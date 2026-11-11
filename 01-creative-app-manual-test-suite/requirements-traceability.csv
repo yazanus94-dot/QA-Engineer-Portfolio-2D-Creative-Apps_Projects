@@ -1,0 +1,13 @@
+Requirement,Name,Description,Test Cases,Count
+REQ-01,Document management,"Create, size, save, reopen and recover documents","TC-DOCU-001, TC-DOCU-002, TC-DOCU-003, TC-DOCU-004, TC-DOCU-005",5
+REQ-02,Drawing tools,"Pen, brush, eraser and fill behave predictably at all sizes","TC-DRAW-001, TC-DRAW-002, TC-DRAW-003, TC-DRAW-004, TC-DRAW-005, TC-DRAW-006",6
+REQ-03,Shapes,"Rectangle, ellipse and shape options draw correctly in every drag direction","TC-SHAP-001, TC-SHAP-002, TC-SHAP-003, TC-SHAP-004, TC-SHAP-005, TC-SHAP-006",6
+REQ-04,Selection & transform,"Select, move, resize, rotate, flip, align and group objects","TC-SELE-001, TC-SELE-002, TC-SELE-003, TC-SELE-004, TC-SELE-005, TC-SELE-006, TC-SELE-007",7
+REQ-05,Layers,"Add, order, hide, lock, blend and merge layers","TC-LAYE-001, TC-LAYE-002, TC-LAYE-003, TC-LAYE-004, TC-LAYE-005, TC-LAYE-006",6
+REQ-06,Color,"Color input, picker, eyedropper, alpha and swatches are accurate","TC-COLO-001, TC-COLO-002, TC-COLO-003, TC-COLO-004",4
+REQ-07,Text,"Text creation, fonts, Unicode and RTL rendering","TC-TEXT-001, TC-TEXT-002, TC-TEXT-003, TC-TEXT-004",4
+REQ-08,History,Undo and redo are reliable for every action type,"TC-HIST-001, TC-HIST-002, TC-HIST-003, TC-HIST-004",4
+REQ-09,Navigation,"Zoom, pan and fit-to-screen keep drawing accurate","TC-NAVI-001, TC-NAVI-002, TC-NAVI-003",3
+REQ-10,Import / Export,Exported files match the canvas; bad imports fail gracefully,"TC-EXPO-001, TC-EXPO-002, TC-EXPO-003, TC-IMPO-001",4
+REQ-11,Usability & accessibility,"Shortcuts, keyboard navigation, contrast and labels","TC-USAB-001, TC-USAB-002, TC-USAB-003",3
+REQ-12,Performance & compatibility,Responsive with heavy documents; works across browsers and displays,"TC-PERF-001, TC-COMP-001, TC-COMP-002, TC-COMP-003, TC-COMP-004",5

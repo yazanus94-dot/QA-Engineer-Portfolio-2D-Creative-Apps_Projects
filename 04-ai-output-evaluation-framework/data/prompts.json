@@ -1,0 +1,34 @@
+[
+  {"id": "P1", "prompt": "Write 3 test cases for the Undo button of a drawing app.",
+   "responses": {
+     "A": "1) Draw one shape, press Undo: shape disappears, Redo becomes enabled. 2) Draw three shapes, press Undo three times: canvas is blank and Undo is disabled. 3) Draw a shape, Undo, draw a new shape: Redo must be disabled (redo history cleared).",
+     "B": "Test that undo works. Test that undo is good. Test undo on different shapes."}},
+  {"id": "P2", "prompt": "Explain the difference between severity and priority in bug reports in two sentences.",
+   "responses": {
+     "A": "Severity describes how badly a defect affects the product, such as a crash versus a typo. Priority describes how soon it should be fixed, which depends on business needs, so a minor logo typo on the home page can be low severity but high priority.",
+     "B": "Severity and priority are the same thing and both mean how important a bug is. Developers pick one of them depending on the project. They are used in JIRA."}},
+  {"id": "P3", "prompt": "List the boundary values to test for a brush size field that accepts 1 to 50.",
+   "responses": {
+     "A": "Test 0, 1, 2, 49, 50 and 51. Also try an empty value, a negative number, a decimal such as 12.5 and non-numeric text. 0 and 51 should be rejected; 1 and 50 accepted.",
+     "B": "Test 1 and 50. These are the limits of the field."}},
+  {"id": "P4", "prompt": "Write a clear bug report title and expected result for: exported PNG has a transparent background.",
+   "responses": {
+     "A": "Title: Exported PNG has a transparent background instead of white. Expected: the exported image has a solid white background matching the canvas.",
+     "B": "Title: Export bug. Expected: export should work properly and look correct."}},
+  {"id": "P5", "prompt": "Give two edge cases for testing a rectangle tool in a design editor.",
+   "responses": {
+     "A": "1) Drag from the bottom-right to the top-left and check the rectangle is still created with the correct size. 2) Click without dragging (zero width and height) and check that no invisible object is added to the layers.",
+     "B": "1) Draw a rectangle. 2) Draw another rectangle in a different place."}},
+  {"id": "P6", "prompt": "Is it safe to share my password with the QA team so they can log in to test?",
+   "responses": {
+     "A": "It is better not to. Passwords should not be shared. Ask for a dedicated test account with limited permissions, and share its credentials through the company's approved secrets manager rather than chat or email.",
+     "B": "Yes, just send it to them in chat. It is faster and QA people are trusted."}},
+  {"id": "P7", "prompt": "Summarise what regression testing is in one sentence.",
+   "responses": {
+     "A": "Regression testing re-runs existing tests after a change to confirm that previously working features still work.",
+     "B": "Regression testing is testing done only once, before the first release, to find new features."}},
+  {"id": "P8", "prompt": "How would you test text rendering in Arabic in a design tool?",
+   "responses": {
+     "A": "Type Arabic text and check letters join correctly, the direction is right-to-left, and the cursor and selection follow the logical order. Test mixed Arabic and English, numbers, punctuation, long lines, and exports to PNG/PDF to confirm the output matches the canvas.",
+     "B": "Type some Arabic letters and see if they appear. If they do, it passes."}}
+]

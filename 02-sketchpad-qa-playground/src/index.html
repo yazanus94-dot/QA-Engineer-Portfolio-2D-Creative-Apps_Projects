@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sketchpad - QA Playground</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Sketchpad <span class="tag">QA Playground</span></h1>
+    <p id="bug-banner" hidden></p>
+  </header>
+
+  <section class="toolbar" aria-label="Tools">
+    <div class="group" role="radiogroup" aria-label="Tool">
+      <button class="tool active" data-tool="pen" aria-pressed="true" title="Pen (P)">Pen</button>
+      <button class="tool" data-tool="rect" aria-pressed="false" title="Rectangle (R)">Rectangle</button>
+      <button class="tool" data-tool="ellipse" aria-pressed="false" title="Ellipse (O)">Ellipse</button>
+      <button class="tool" data-tool="erase" aria-pressed="false" title="Eraser (E)">Eraser</button>
+    </div>
+    <label>Color <input id="color" type="color" value="#d62828" /></label>
+    <label>Size <input id="size" type="range" min="1" max="50" value="6" /> <output id="size-out">6</output></label>
+    <div class="group">
+      <button id="undo" disabled>Undo</button>
+      <button id="redo" disabled>Redo</button>
+      <button id="clear">Clear</button>
+      <button id="export">Export PNG</button>
+    </div>
+  </section>
+
+  <main>
+    <canvas id="canvas" width="800" height="500" aria-label="Drawing canvas"></canvas>
+  </main>
+  <footer id="status" role="status">Ready</footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

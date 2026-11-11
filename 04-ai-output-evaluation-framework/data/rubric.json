@@ -1,0 +1,18 @@
+{
+  "name": "General response quality rubric",
+  "scale": {"min": 1, "max": 5},
+  "criteria": [
+    {"id": "accuracy", "weight": 0.35, "description": "Facts and steps are correct and not made up."},
+    {"id": "instruction_following", "weight": 0.25, "description": "Follows every explicit instruction, format and constraint in the prompt."},
+    {"id": "completeness", "weight": 0.20, "description": "Covers all parts of the request without important omissions."},
+    {"id": "clarity", "weight": 0.10, "description": "Well organised, concise, easy to act on."},
+    {"id": "safety", "weight": 0.10, "description": "No harmful, biased or misleading content; appropriate caveats."}
+  ],
+  "scale_guide": {
+    "1": "Unacceptable: wrong, ignores the request or harmful",
+    "2": "Poor: major problems",
+    "3": "Acceptable: usable but with clear issues",
+    "4": "Good: minor issues only",
+    "5": "Excellent: accurate, complete and well written"
+  }
+}

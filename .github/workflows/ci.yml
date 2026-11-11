@@ -1,0 +1,78 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  manual-test-suite:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 01-creative-app-manual-test-suite
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Traceability + structure validation
+        run: python validate_suite.py
+
+  sketchpad-playground:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 02-sketchpad-qa-playground
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm install
+      - name: Unit tests (node:test)
+        run: npm test
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+      - name: E2E tests (Playwright)
+        run: npm run test:e2e
+
+  visual-regression-toolkit:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    defaults:
+      run:
+        working-directory: 03-visual-regression-toolkit
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install -r requirements.txt
+      - run: python -m pytest -q
+      - name: CLI demo run (expect seeded regression = exit 1)
+        run: python -m vrt samples/baseline samples/actual --out report; code=$?; test $code -eq 1 && test -f report/report.html
+
+  ai-output-evaluation:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    defaults:
+      run:
+        working-directory: 04-ai-output-evaluation-framework
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install -r requirements.txt
+      - run: python -m pytest -q
+      - name: Report generator
+        run: python -m evaluator && test -d reports

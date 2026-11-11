@@ -1,0 +1,15 @@
+{
+  "name": "sketchpad-qa-playground",
+  "version": "1.0.0",
+  "description": "A small 2D drawing app with seeded defects, used to practise and demonstrate QA: test design, bug reports and automation.",
+  "type": "module",
+  "scripts": {
+    "start": "node serve.js",
+    "test": "node --test tests/core.test.js",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,17 @@
+prompt_id,annotator,preferred
+P1,annotator_1,A
+P1,annotator_2,A
+P2,annotator_1,A
+P2,annotator_2,A
+P3,annotator_1,A
+P3,annotator_2,tie
+P4,annotator_1,A
+P4,annotator_2,A
+P5,annotator_1,A
+P5,annotator_2,B
+P6,annotator_1,A
+P6,annotator_2,A
+P7,annotator_1,A
+P7,annotator_2,A
+P8,annotator_1,A
+P8,annotator_2,A
