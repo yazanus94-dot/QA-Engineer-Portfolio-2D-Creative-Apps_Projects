@@ -56,7 +56,7 @@ jobs:
       - run: pip install -r requirements.txt
       - run: python -m pytest -q
       - name: CLI demo run (expect seeded regression = exit 1)
-        run: python -m vrt samples/baseline samples/actual --out report; code=$?; test $code -eq 1 && test -f report/report.html
+        run: python -m vrt samples/baseline samples/actual --out report || code=$?; test "$code" -eq 1 && test -f report/report.html
 
   ai-output-evaluation:
     runs-on: ubuntu-latest
