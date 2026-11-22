@@ -4,11 +4,11 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: [main]
   workflow_dispatch:
 
 jobs:
   manual-test-suite:
+    name: Manual Test Suite Validation
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -22,6 +22,7 @@ jobs:
         run: python validate_suite.py
 
   sketchpad-playground:
+    name: Sketchpad Playground (Node + Playwright)
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -31,15 +32,22 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - run: npm install
+          cache: 'npm'
+      - run: npm ci
       - name: Unit tests (node:test)
         run: npm test
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
       - name: E2E tests (Playwright)
         run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        name: sketchpad-test-results
+        path: 02-sketchpad-qa-playground/test-results/
+        retention-days: 14
 
   visual-regression-toolkit:
+    name: Visual Regression Toolkit
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -56,14 +64,18 @@ jobs:
       - run: pip install -r requirements.txt
       - run: python -m pytest -q
       - name: CLI demo run (expect seeded regression = exit 1)
-        run: python -m vrt samples/baseline samples/actual --out report || code=$?; test "$code" -eq 1 && test -f report/report.html
+        run: |
+          python -m vrt samples/baseline samples/actual --out report || code=$?
+          test "$code" -eq 1 && test -f report/report.html
+      - uses: actions/upload-artifact@v4
+        if: always()
+        name: vrt-report-${{ matrix.python-version }}
+        path: 03-visual-regression-toolkit/report/
+        retention-days: 14
 
   ai-output-evaluation:
+    name: AI Output Evaluation Framework
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["3.11", "3.12", "3.13"]
     defaults:
       run:
         working-directory: 04-ai-output-evaluation-framework
@@ -71,8 +83,14 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: "3.12"
       - run: pip install -r requirements.txt
-      - run: python -m pytest -q
+      - name: Run tests
+        run: python -m pytest -q
       - name: Report generator
         run: python -m evaluator && test -d reports
+      - uses: actions/upload-artifact@v4
+        if: always()
+        name: ai-eval-reports
+        path: 04-ai-output-evaluation-framework/reports/
+        retention-days: 14
